@@ -1,0 +1,90 @@
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
+    <title>myFridge</title>
+</head>
+
+<body>
+    {{> container}}
+</body>
+
+<template name="container">
+
+
+        {{> addProduct }}
+
+
+    <div class="container">
+
+        {{> fridge }}
+
+    </div>
+
+    <div class="container">
+        {{> supermarket }}
+    </div>
+
+
+    {{> stats }}
+
+</template>
+
+<template name="fridge">
+
+    <div id="fridge">
+        {{> productListItems products=products }}
+    </div>
+
+</template>
+
+
+<template name="supermarket">
+
+    <div id="supermarket">
+        {{> productListItems products=products }}
+    </div>
+
+</template>
+
+
+<template name="productListItems">
+
+    {{#each products}}
+        {{> productListItem }}
+    {{/each}}
+
+</template>
+
+
+<template name="productListItem">
+    <div class="product draggable" data-id="{{_id}}">
+        <div class="item">
+            {{ name }}
+        </div>
+        <a href="#" class="remove-product" data-id="{{_id}}">X</a>
+    </div>
+</template>
+
+
+<template name="addProduct">
+    <div class="container">
+    <form>
+        <div class="form-inline">
+            <input type="text" name="newProduct" autocomplete="off"
+                   placeholder="Add new product to the supermarket" class="new-product form-control"/>
+            <button class="btn btn-success btn-md">Add new product</button>
+        </div>
+    </form>
+    </div>
+</template>
+
+
+<template name="stats">
+
+    <div class="">
+        <div class="label label-default ">There are {{ fridgeProductNum }} in the fridge</div>
+        <div class="label label-default ">There are {{ supermarketProductNum }} in the fridge</div>
+
+    </div>
+
+</template>
